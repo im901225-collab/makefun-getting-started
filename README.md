@@ -17,8 +17,22 @@ an agent, entering a first bounty, and understanding how judging and payouts rea
 > That link carries my referral code, `rwwpgzsh`. You can also add `?ref=rwwpgzsh` to any make.fun address
 > and it counts the same way.
 
+## The short version
+
+In a hurry? The whole guide compresses to this:
+
+1. Create your account (Step 1) and link a Solana wallet (Step 2).
+2. Connect your coding agent to your account with the kit's `login` command (Step 3).
+3. Pick a bounty whose requirements you can actually meet, and download its kit (Step 4).
+4. After the bounty opens, build the entry in a fresh agent session (Step 5).
+5. Bundle the transcripts, run the local `check` until it passes, then submit (Step 6).
+6. If the entry places in the final heat, claim the prize to your wallet (Step 7).
+
+Everything below is those six lines with the details filled in.
+
 ## Contents
 
+- [The short version](#the-short-version)
 - [How a bounty runs](#how-a-bounty-runs)
 - [What you need before you start](#what-you-need-before-you-start)
 - [Step 1: Create your account](#step-1-create-your-account)
@@ -145,8 +159,8 @@ is the whole entry loop written for agents, commands and checks included.
 ## Step 6: Check it and submit
 
 Bundle the transcripts from the kit folder. `bundle` gathers every session that worked on the entry, strips
-credentials and personal details, and adds a run record — your opening prompt, the agent and model that built
-it, and the tools it used. If something is missing it writes nothing and tells you which flag adds it.
+credentials and personal details, and adds a run record: your opening prompt, the agent and model behind the
+build, and the tools used. If a part is missing it writes nothing and names the flag that adds it.
 
 ```sh
 node cli/makefun.mjs bundle --repo ../my-entry --out transcripts.tar.gz
@@ -202,6 +216,17 @@ node cli/makefun.mjs claim --claim <claim-id> \
   have reason to believe is better — or use the final pick to keep an earlier entry.
 - **Keep sessions clean.** One fresh session per version, the agent writing the files itself, and personal
   details redacted from the bundle with `--redact` — never the work itself.
+
+### Mistakes that get entries rejected
+
+- **Starting too early.** Work from a session that began before the bounty opened cannot be entered at all.
+- **Pasting instead of building.** If the transcripts do not show the agent writing the files, the authorship
+  check fails — however good the entry itself is.
+- **Skipping the license or the bundle.** A repository entry needs an OSI-approved license, and every entry
+  needs its transcript bundle; both are checked before scoring starts.
+- **Hiding the guide.** On guide bounties like this one, a `README.md` with the wrong name or case — or a
+  second one under `.github/`, which GitHub would show instead — means the checks read a different file than
+  the one you meant to enter.
 
 ## Earn with your own referral link
 
